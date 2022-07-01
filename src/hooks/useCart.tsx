@@ -82,11 +82,8 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     amount,
   }: UpdateProductAmount) => {
     try {
-      const product = products.find((product: Product) => product.id === productId);
-      if(product !== undefined) {
-        if(product.amount <= 0){
-          return;
-        }
+      if(amount <= 0) {
+        return;
       }
 
       const inStock = stock.find((s: Stock) => (s.id === productId && s.amount > 0));
