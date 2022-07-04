@@ -27,9 +27,6 @@ const Home = (): JSX.Element => {
 
   const cartItemsAmount = cart.reduce((sumAmount, product) => {
     sumAmount[product.id] = product.amount;
-
-    console.log(cart);
-
     return sumAmount;
   }, {} as CartItemsAmount );
 
@@ -55,7 +52,7 @@ const Home = (): JSX.Element => {
       {
         products.map((product: ProductFormatted) => {
           return (
-            <li>
+            <li key={product.id}>
               <img src={product.image} alt={product.title} />
               <strong>{product.title}</strong>
               <span>{product.priceFormatted}</span>
@@ -67,7 +64,6 @@ const Home = (): JSX.Element => {
                 <div data-testid="cart-product-quantity">
                   <MdAddShoppingCart size={16} color="#FFF" />
                   {cartItemsAmount[product.id] || 0}
-                  {console.log(cartItemsAmount)}
                 </div>
 
                 <span>ADICIONAR AO CARRINHO</span>
